@@ -1,0 +1,24 @@
+{
+  "name": "itc-javascript-snippets",
+  "displayName": "itc-javascript-snippets",
+  "description": "",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/snippets.code-snippets"
+      },
+      {
+        "language": "javascriptvue",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ]
+  }
+}

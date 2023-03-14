@@ -1,0 +1,79 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $1 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+	// Placeholders with the same ids are connected.
+	// Example:
+	"itc.action": {
+		"scope": "javascript,typescript",
+		"prefix": "itc.acttion",
+		"body": [
+			"import Api from 'services/$1Service'",
+			"",
+			"export default {",
+			"  async getAll (payload) {",
+			"    try {",
+			"      const { data: { data } } = await Api.getAll(payload)",
+			"      this.$1s = data",
+			"    } catch (error) {}",
+			"  },",
+			"  async getById (payload) {",
+			"    try {",
+			"      const { data: { data } } = await Api.getById(payload)",
+			"      this.$1 = data",
+			"    } catch (error) {}",
+			"  },",
+			"  async create (payload) {",
+			"    try {",
+			"      const { data } = await Api.create(payload)",
+			"      this.$1s.push(data)",
+			"    } catch (error) {}",
+			"  },",
+			"  async update (id, payload) {",
+			"    try {",
+			"      const { data } = await Api.update(id, payload)",
+			"      const index = this.$1s.findIndex(($1) => $1.id === id)",
+			"      this.$1s[index] = data",
+			"    } catch (error) {}",
+			"  },",
+			"  async deleteById (id) {",
+			"    try {",
+			"      await Api.deleteById(id)",
+			"      this.$1s = this.$1s.filter($1 => $1.id !== id)",
+			"    } catch (error) {}",
+			"  }",
+			"}",
+		],
+		"description": "it's the action file"
+	},
+	"itc.api": {
+		"scope": "javascript,typescript",
+		"prefix": "itc.api",
+		"body": [
+			"import client from './client'",
+			"",
+			"const RESOURCE_NAME = '$1'",
+			"",
+			"export default {",
+			"  getAll () {",
+			"    return client().get(RESOURCE_NAME)",
+			"  },",
+			"  getById (id) {",
+			"    return client().get(`\\${RESOURCE_NAME}/${id}`)",
+			"  },",
+			"  create (payload) {",
+			"    return client().post(RESOURCE_NAME, payload)",
+			"  },",
+			"  update (id, payload) {",
+			"    return client().put(`\\${RESOURCE_NAME}/${id}`, payload)",
+			"  },",
+			"  deleteById (id) {",
+			"    return client().delete(`\\${RESOURCE_NAME}/${id}`)",
+			"  }",
+			"}"
+		],
+		"description": "it's the api file"
+	}
+}

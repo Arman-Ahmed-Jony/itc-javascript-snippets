@@ -3,6 +3,12 @@
   "displayName": "itc-javascript-snippets",
   "description": "",
   "version": "1.0.0",
+  "publisher": "armanahmed",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arman-Ahmed-Jony/itc-javascript-snippets"
+  },
+  "icon": "logo.png",
   "engines": {
     "vscode": "^1.76.0"
   },
@@ -12,11 +18,11 @@
   "contributes": {
     "snippets": [
       {
-        "language": "javascript",
+        "language": "vue",
         "path": "./snippets/snippets.code-snippets"
       },
       {
-        "language": "javascriptvue",
+        "language": "html",
         "path": "./snippets/snippets.code-snippets"
       }
     ]

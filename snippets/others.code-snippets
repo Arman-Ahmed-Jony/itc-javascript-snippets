@@ -1,0 +1,9 @@
+{
+	"fake.img": {
+		"prefix": "fake.img",
+		"body": [
+			"https://picsum.photos/500/300"
+		],
+		"description": "provide fake image url"
+	}
+}

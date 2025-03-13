@@ -1,49 +1,121 @@
-## Features
+# VSCode Extension: Vue and Pinia Snippets
 
-Basically, you will be able to get action and api snippets in this extention.
+## Overview
+This VSCode extension provides a set of useful snippets for initializing Vue components, Pinia stores, actions, services, and forms in JavaScript and TypeScript projects. The snippets are designed to streamline development with Vue 3, Pinia, and Quasar.
 
-## Requirements
+## Snippets Included
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### 1. **Pinia Store Initialization**
+- **Prefix:** `init.store`
+- **Description:** Generates a basic Pinia store.
+- **Usage:**
+  ```javascript
+  import { defineStore } from 'pinia'
+  import actions from './actions'
 
-## Extension Settings
+  export const useExampleStore = defineStore('examples', {
+    state: () => ({
+      examples: [],
+      example: {}
+    }),
+    actions
+  })
+  ```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### 2. **Pinia Actions File**
+- **Prefix:** `init.action`
+- **Description:** Creates a Pinia actions file with basic CRUD operations.
+- **Usage:**
+  ```javascript
+  import Api from 'services/ExampleService'
 
-For example:
+  export default {
+    async getAll(payload) {
+      try {
+        const { data: { data } } = await Api.getAll(payload)
+        this.examples = data
+      } catch (error) {}
+    },
+    async getById(payload) {
+      try {
+        const { data: { data } } = await Api.getById(payload)
+        this.example = data
+      } catch (error) {}
+    },
+    async create(payload) {
+      try {
+        const { data } = await Api.create(payload)
+        this.examples.push(data)
+      } catch (error) {}
+    },
+    async update(id, payload) {
+      try {
+        const { data } = await Api.update(id, payload)
+        const index = this.examples.findIndex(example => example.id === id)
+        this.examples[index] = data
+      } catch (error) {}
+    },
+    async deleteById(id) {
+      try {
+        await Api.deleteById(id)
+        this.examples = this.examples.filter(example => example.id !== id)
+      } catch (error) {}
+    }
+  }
+  ```
 
-This extension contributes the following settings:
+### 3. **API Service File**
+- **Prefix:** `init.service`
+- **Description:** Generates a basic API service for handling HTTP requests.
+- **Usage:**
+  ```javascript
+  import client from './client'
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+  const RESOURCE_NAME = 'example'
 
-## Known Issues
+  export default {
+    getAll() {
+      return client().get(RESOURCE_NAME)
+    },
+    getById(id) {
+      return client().get(`${RESOURCE_NAME}/${id}`)
+    },
+    create(payload) {
+      return client().post(RESOURCE_NAME, payload)
+    },
+    update(id, payload) {
+      return client().put(`${RESOURCE_NAME}/${id}`, payload)
+    },
+    deleteById(id) {
+      return client().delete(`${RESOURCE_NAME}/${id}`)
+    }
+  }
+  ```
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### 4. **Quasar List Component**
+- **Prefix:** `init.vue.list`
+- **Description:** Creates a Quasar `<q-list>` component for displaying data.
 
-## Release Notes
+### 5. **Quasar Form Component**
+- **Prefix:** `init.vue.form`
+- **Description:** Generates a Quasar `<q-form>` component with validation and submission logic.
 
-Users appreciate release notes as you update your extension.
+### 6. **Quasar Page Component**
+- **Prefix:** `init.vue.index`
+- **Description:** Creates a full-page Quasar component with list and form components integrated.
 
-### 1.0.0
+## Installation
+1. Open VSCode.
+2. Navigate to the Extensions Marketplace.
+3. Search for the extension and install it.
+4. Start using the snippets by typing their respective prefixes.
 
-Initial release of this extension
+## Usage
+Simply type the snippet prefix in a Vue or JavaScript/TypeScript file and select the snippet from the autocomplete suggestions.
 
-### 1.1.0
+## License
+This extension is released under the MIT License.
 
-fixed snippet issue
+## Contributions
+Contributions are welcome! Feel free to submit pull requests or open issues for enhancements.
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

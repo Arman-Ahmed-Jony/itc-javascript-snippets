@@ -1,0 +1,30 @@
+{
+  "init.react": {
+    "scope": "javascript,typescript",
+    "prefix": "init.react", // This is what you'll type to trigger the snippet
+    "body": [
+      "import React, { memo, useEffect } from 'react';",
+      "",
+      "interface Props {",
+      "  // TODO: define props here",
+      "}",
+      "",
+      "const $1 = ({",
+      "  // props destructuring",
+      "}: Props) => {",
+      "",
+      "  useEffect(() => {",
+      "    // TODO: define side effects here",
+      "  }, [])",
+      "",
+      "  return (",
+      "    <></>",
+      "  );",
+      "};",
+      "",
+      "export default memo($1);",
+      ""
+    ],
+    "description": "A very basic react component"
+  }
+}
